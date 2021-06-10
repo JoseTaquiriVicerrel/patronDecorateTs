@@ -134,7 +134,6 @@ function agregarCrema(item) {
   let cantElemet = card.querySelector('#Crema');
   let cantidad: number = Number(cantElemet.textContent);
   cantElemet.innerHTML = String( cantidad + 1);
-  console.log(products[index].Costo());
   subElemet.innerHTML = 'S/' + products[index].Costo().toFixed(2);
   calcularTotal();
 }
@@ -146,7 +145,6 @@ function agregarMoka(item) {
   let cantElemet = card.querySelector('#Moka');
   let cantidad: number = Number(cantElemet.textContent);
   cantElemet.innerHTML = String(cantidad + 1);
-  console.log(products[index].Costo());
   subElemet.innerHTML = 'S/' + products[index].Costo().toFixed(2);
   calcularTotal();
 }
@@ -158,7 +156,6 @@ function agregarLeche(item) {
   let cantElemet = card.querySelector('#Leche');
   let cantidad: number = Number(cantElemet.textContent);
   cantElemet.innerHTML = String(cantidad + 1);
-  console.log(products[index].Costo());
   subElemet.innerHTML = 'S/' + products[index].Costo().toFixed(2);
   calcularTotal();
 }
@@ -170,7 +167,6 @@ function agregarSoya(item) {
   let cantElemet = card.querySelector('#Soya');
   let cantidad: number = Number(cantElemet.textContent);
   cantElemet.innerHTML = String(cantidad + 1);
-  console.log(products[index].Costo());
   subElemet.innerHTML = 'S/' + products[index].Costo().toFixed(2);
   calcularTotal();
 }
@@ -208,7 +204,7 @@ function itemCaffe(bebida : Bebida) : string {
   return `<div class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
               <div class="col-md-3">
-                <img src="img/${bebida.getDescription().toLowerCase()}.jpg" alt="..." height="120" width="120" >
+                <img src="images/${bebida.getDescription().toLowerCase()}.jpg" alt="..." height="120" width="120" >
               </div>
               <div class="col-md-6" >
                   <h5 class="card-title">Caffe ${bebida.getDescription()}</h5>
@@ -253,7 +249,6 @@ function quitarItem(item) {
   let index = Array.prototype.indexOf.call(listProduct.children, button);
   products.splice(index);
   listProduct.removeChild(button);
-  console.log(listProduct);
   calcularTotal();
 }
 
@@ -286,16 +281,12 @@ btnRegistros.addEventListener("click", () => {
   listVenta.innerHTML = "";
   ventas.forEach(element => {
     listVenta.insertAdjacentHTML('beforeend', agregarItemVenta(element));
-    console.log(element);
   });
 
 })
 btnAgregar.addEventListener("click", ()=>{
   ventas.push(products);
   limpiar();
-  // ventas.forEach(element => {
-  //   console.log(calcularTotalVentas(element));
-  // });
 })
 
 function agregarItemVenta(bebida : Array<Bebida>) {
@@ -321,22 +312,18 @@ function agregarItemVenta(bebida : Array<Bebida>) {
 function verDetalle(item) {
   let card = item.parentElement.parentElement.parentElement.parentElement.parentElement;
   let index = Array.prototype.indexOf.call(listVenta.children, card);
-  console.log(card);
   listVentaDetalle.innerHTML = '';
   ventas[index].forEach(element => {
     listVentaDetalle.insertAdjacentHTML('beforeend', itemCaffeDetalle(element));
   })
   let detTotal = document.getElementById('detalleTotal')
-  detTotal.innerHTML = 'S/' + calcularTotalVentas(ventas[index]);
-  console.log(calcularTotalVentas(ventas[index]));
-  
-  //let index = Array.prototype.indexOf.call(listProduct.children, card);
+  detTotal.innerHTML = 'S/' + calcularTotalVentas(ventas[index]);  
 }
 function itemCaffeDetalle(bebida: Bebida): string {
   return `<div class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
               <div class="col-md-4">
-                <img src="${getCaffe(bebida.getDescription())}.jpg" alt="..." height="120" width="120" >
+                <img src="images/${getCaffe(bebida.getDescription().toLowerCase())}.jpg" alt="..." height="120" width="120" >
               </div>
               <div class="col-md-6" >
                 <h5 class="card-title">Caffe ${bebida.getDescription()}</h5>
