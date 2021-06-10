@@ -208,7 +208,7 @@ function itemCaffe(bebida : Bebida) : string {
   return `<div class="card mb-3" style="max-width: 100%;">
             <div class="row no-gutters">
               <div class="col-md-3">
-                <img src="${bebida.getDescription()}.jpg" alt="..." height="120" width="120" >
+                <img src="img/${bebida.getDescription().toLowerCase()}.jpg" alt="..." height="120" width="120" >
               </div>
               <div class="col-md-6" >
                   <h5 class="card-title">Caffe ${bebida.getDescription()}</h5>
